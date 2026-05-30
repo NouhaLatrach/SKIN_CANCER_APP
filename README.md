@@ -342,12 +342,5 @@ result = 'Malin' if prob > 0.5 else 'Bénin'
 <div align="center">
 
 ###  Développé par **Nouha LATRACH**
-**1TA2 · ENSTA · 2025/2026**
 
-<br>
 
-*Développé avec 🌸 dans le cadre du module Introduction à l'IA*
-
- **N'hésitez pas à mettre une étoile si ce projet vous a été utile !**
-
-</div>
