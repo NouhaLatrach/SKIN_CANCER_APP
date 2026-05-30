@@ -1,4 +1,4 @@
-<div align="center">
+<div align="left">
 
 # 🔬 SkinAI
 ### Plateforme de Diagnostic Dermatologique par Intelligence Artificielle
