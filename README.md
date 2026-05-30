@@ -45,7 +45,7 @@ Module : Introduction à l'IA · **2025/2026**
 
 ##  À propos
 
-**SkinAI** est une application web médicale professionnelle développée en **Python / Flask** dans le cadre du TD 8 — *Développement d'une Application Web IA (Partie 1)*.
+**SkinAI** est une application web médicale professionnelle développée en **Python / Flask** dans le cadre du TP — *Développement d'une Application Web IA *.
 
 Elle intègre un modèle de Deep Learning **VGG16** pré-entraîné pour analyser des images de lésions cutanées et fournir un diagnostic instantané avec un taux de confiance en pourcentage.
 
