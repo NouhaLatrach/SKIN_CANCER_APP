@@ -1,4 +1,3 @@
-# SKIN_CANCER_APP
 <div align="center">
 
 # 🔬 SkinAI
@@ -15,7 +14,6 @@
 
 > 🏥 Application Web médicale complète intégrant un modèle **VGG16** de Deep Learning  
 > pour la détection du cancer cutané 
-
 
 ---
 
@@ -37,7 +35,7 @@
 
 ##  À propos
 
-**SkinAI** est une application web médicale professionnelle développée en **Python / Flask** dans le cadre du TP — *Développement d'une Application Web IA *.
+**SkinAI** est une application web médicale professionnelle développée en **Python / Flask** dans le cadre du TD 8 — *Développement d'une Application Web IA (Partie 1)*.
 
 Elle intègre un modèle de Deep Learning **VGG16** pré-entraîné pour analyser des images de lésions cutanées et fournir un diagnostic instantané avec un taux de confiance en pourcentage.
 
@@ -64,7 +62,7 @@ Elle intègre un modèle de Deep Learning **VGG16** pré-entraîné pour analyse
 
 ---
 
-##  Captures d'écran
+## Captures d'écran
 
 ###  Page de Connexion
 > Interface split-screen avec présentation des fonctionnalités à gauche et formulaire à droite
@@ -187,8 +185,8 @@ http://127.0.0.1:5000
 
 | Champ | Valeur |
 |---|---|
-|  Nom d'utilisateur | `admin` |
-|  Mot de passe | `1234` |
+| 👤 Nom d'utilisateur | `admin` |
+| 🔐 Mot de passe | `1234` |
 
 ### Workflow
 
@@ -316,7 +314,7 @@ result = 'Malin' if prob > 0.5 else 'Bénin'
 
 ---
 
-## 🛠️ Technologies
+##  Technologies
 
 | Technologie | Version | Rôle |
 |---|---|---|
@@ -330,9 +328,4 @@ result = 'Malin' if prob > 0.5 else 'Bénin'
 | Pillow | — | Traitement d'images Python |
 
 ---
-
-<div align="center">
-
-###  Développé par **Nouha LATRACH**
-
 
