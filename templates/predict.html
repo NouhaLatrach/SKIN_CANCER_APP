@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkinAI — Nouvelle analyse</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="page-bg">
+  <div class="bg-blob blob1"></div>
+  <div class="bg-blob blob2"></div>
+</div>
+
+<nav class="navbar">
+  <a class="nav-logo-wrap" href="/dashboard">
+    <div class="nav-logo">🔬</div>
+    <div>
+      <div class="nav-brand-text">Skin<em>AI</em></div>
+      <span class="nav-tagline">Diagnostic Dermatologique IA</span>
+    </div>
+  </a>
+  <div class="nav-right">
+    <a href="/dashboard" class="btn btn-outline">← Dashboard</a>
+    <a href="/logout"    class="btn btn-red">Déconnexion</a>
+  </div>
+</nav>
+
+<div class="page predict-page">
+  <div class="wrap-sm">
+
+    <div class="page-header">
+      <h1>Nouvelle <em>Analyse</em></h1>
+      <p>Remplissez les informations du patient et uploadez l'image de la lésion</p>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon">🩺</div>
+        <h2>Informations Patient</h2>
+        <p>Formulaire de soumission pour diagnostic IA</p>
+      </div>
+      <div class="card-body">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for cat, msg in messages %}
+        <div class="alert alert-{{ cat }}">⚠️ {{ msg }}</div>
+        {% endfor %}
+        {% endwith %}
+
+        <form method="POST" enctype="multipart/form-data" id="form">
+
+          <div class="form-group">
+            <label class="form-label"><span class="ico">👤</span> Nom complet</label>
+            <input class="input" type="text" name="name" placeholder="Ex: Ahmed Ben Ali" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label"><span class="ico">🎂</span> Âge du patient</label>
+            <input class="input" type="number" name="age" placeholder="Ex: 45" min="1" max="120" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label"><span class="ico">🖼️</span> Image de la lésion</label>
+            <div class="upload-zone" id="zone">
+              <div class="upload-icon">📤</div>
+              <div class="upload-title"><span>Cliquez pour choisir</span> une image</div>
+              <div class="upload-sub">JPG · PNG · JPEG &nbsp;|&nbsp; Max 10 MB</div>
+              <input type="file" name="image" accept="image/*" required id="fileIn"
+                     onchange="onFile(this)">
+            </div>
+            <div class="upload-preview" id="prev">
+              ✅ <span id="fname"></span>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <button class="btn btn-rose btn-full" type="submit" id="subBtn">
+            🔍 &nbsp;Lancer l'analyse IA
+          </button>
+
+        </form>
+      </div>
+    </div>
+
+    <!-- Info box -->
+    <div style="margin-top:16px;padding:14px 18px;background:rgba(233,30,140,0.05);border:1px solid var(--rose-border);border-radius:var(--r-sm);font-size:13px;color:var(--text2);">
+      💡 <strong>Conseil :</strong> Utilisez une image nette, bien éclairée, centrée sur la lésion pour une meilleure précision du modèle.
+    </div>
+
+  </div>
+</div>
+
+<script>
+function onFile(inp) {
+  if (inp.files && inp.files[0]) {
+    document.getElementById('fname').textContent = inp.files[0].name;
+    document.getElementById('prev').classList.add('show');
+    document.getElementById('zone').style.borderColor = 'var(--rose)';
+    document.getElementById('zone').style.background  = 'var(--rose-pale)';
+  }
+}
+document.getElementById('form').addEventListener('submit', function() {
+  const b = document.getElementById('subBtn');
+  b.innerHTML = '⏳ &nbsp;Analyse en cours...';
+  b.disabled = true; b.style.opacity = '0.75';
+});
+</script>
+
+</body>
+</html>

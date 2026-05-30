@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkinAI — Connexion</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="page-bg">
+  <div class="bg-blob blob1"></div>
+  <div class="bg-blob blob2"></div>
+</div>
+
+<div class="login-page">
+
+  <!-- GAUCHE : Hero -->
+  <div class="login-left">
+    <div class="login-left-content">
+      <span class="login-hero-icon">🔬</span>
+      <h1>Skin<em>AI</em></h1>
+      <p>Plateforme de diagnostic dermatologique par Intelligence Artificielle — VGG16 Deep Learning</p>
+      <div class="login-features">
+        <div class="feature-item">
+          <span class="fi">🧠</span>
+          Modèle VGG16 pré-entraîné sur lésions cutanées
+        </div>
+        <div class="feature-item">
+          <span class="fi">⚡</span>
+          Diagnostic instantané Bénin / Malin
+        </div>
+        <div class="feature-item">
+          <span class="fi">🗄️</span>
+          Historique complet des patients
+        </div>
+        <div class="feature-item">
+          <span class="fi">🔒</span>
+          Accès sécurisé au personnel médical
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DROITE : Formulaire -->
+  <div class="login-right">
+    <div class="login-form-wrap">
+
+      <div style="margin-bottom:32px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+          <div style="width:36px;height:36px;background:linear-gradient(135deg,var(--rose),#c8157a);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 4px 14px rgba(233,30,140,0.3);">🔬</div>
+          <span style="font-size:18px;font-weight:800;letter-spacing:-0.3px;">Skin<em style="font-style:italic;font-family:var(--font-display);color:var(--rose);">AI</em></span>
+        </div>
+        <h2 class="login-form-title">Bon retour, <em>Docteur</em></h2>
+        <p class="login-form-sub">Connectez-vous pour accéder à la plateforme</p>
+      </div>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for cat, msg in messages %}
+      <div class="alert alert-{{ cat }}">
+        {% if cat == 'danger' %}⚠️{% else %}✅{% endif %} {{ msg }}
+      </div>
+      {% endfor %}
+      {% endwith %}
+
+      <form method="POST">
+        <div class="form-group">
+          <label class="form-label"><span class="ico">👤</span> Identifiant</label>
+          <input class="input" type="text" name="username"
+                 placeholder="Nom d'utilisateur" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label class="form-label"><span class="ico">🔐</span> Mot de passe</label>
+          <input class="input" type="password" name="password"
+                 placeholder="••••••••" required autocomplete="current-password">
+        </div>
+        <div class="hr"></div>
+        <button class="btn btn-rose btn-full" type="submit">
+          Se connecter &nbsp;→
+        </button>
+      </form>
+
+      <p style="text-align:center;margin-top:28px;font-size:11px;color:var(--text3);font-family:var(--font-mono);">
+        Nouha LATRACH · 1TA2 · 2025/2026
+      </p>
+
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

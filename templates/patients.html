@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkinAI — Patients</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="page-bg">
+  <div class="bg-blob blob1"></div>
+  <div class="bg-blob blob2"></div>
+</div>
+
+<nav class="navbar">
+  <a class="nav-logo-wrap" href="/dashboard">
+    <div class="nav-logo">🔬</div>
+    <div>
+      <div class="nav-brand-text">Skin<em>AI</em></div>
+      <span class="nav-tagline">Diagnostic Dermatologique IA</span>
+    </div>
+  </a>
+  <div class="nav-right">
+    <a href="/predict"   class="btn btn-rose">+ Nouvelle analyse</a>
+    <a href="/dashboard" class="btn btn-outline">← Dashboard</a>
+    <a href="/logout"    class="btn btn-red">Déconnexion</a>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="wrap-lg">
+    <div class="patients-page">
+
+      <div class="patients-top">
+        <div>
+          <h1>Liste des <em>Patients</em></h1>
+          <p>Historique complet de tous les diagnostics enregistrés</p>
+        </div>
+        <a href="/predict" class="btn btn-rose">🩺 Nouvelle analyse</a>
+      </div>
+
+      <div class="table-card">
+        <div class="table-card-head">
+          <div class="table-title">
+            📋 Registre des patients
+          </div>
+          <span class="table-count">{{ patients|length }} entrées</span>
+        </div>
+
+        {% if patients %}
+        <div style="overflow-x:auto;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Patient</th>
+                <th>Âge</th>
+                <th>Diagnostic</th>
+                <th>Confiance</th>
+                <th>Image</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for p in patients %}
+              <tr>
+                <td class="td-idx">{{ loop.index }}</td>
+                <td class="td-name">{{ p.name }}</td>
+                <td class="td-age">{{ p.age }} ans</td>
+                <td>
+                  {% if p.result == 'Malin' %}
+                  <span class="badge badge-danger">⚠️ Malin</span>
+                  {% else %}
+                  <span class="badge badge-success">✅ Bénin</span>
+                  {% endif %}
+                </td>
+                <td>
+                  <div class="mini-prog">
+                    <div class="mini-track">
+                      <div class="mini-fill {% if p.result == 'Malin' %}mf-danger{% else %}mf-success{% endif %}"
+                           style="width:{{ (p.probability*100)|round(0) }}%;">
+                      </div>
+                    </div>
+                    <span class="mini-val">{{ (p.probability*100)|round(1) }}%</span>
+                  </div>
+                </td>
+                <td class="td-img">
+                  <img src="{{ p.image_path }}" alt="lésion">
+                </td>
+                <td class="td-date">
+                  {{ p.created_at.strftime('%d/%m/%Y') if p.created_at else '—' }}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        {% else %}
+        <div class="empty-box">
+          <span class="e-ico">🗂️</span>
+          <h3>Aucun patient enregistré</h3>
+          <p>Effectuez votre première analyse pour voir les résultats ici</p>
+          <a href="/predict" class="btn btn-rose">🔍 Démarrer une analyse</a>
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

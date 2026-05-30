@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkinAI — Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="page-bg">
+  <div class="bg-blob blob1"></div>
+  <div class="bg-blob blob2"></div>
+</div>
+
+<nav class="navbar">
+  <a class="nav-logo-wrap" href="/dashboard">
+    <div class="nav-logo">🔬</div>
+    <div>
+      <div class="nav-brand-text">Skin<em>AI</em></div>
+      <span class="nav-tagline">Diagnostic Dermatologique IA</span>
+    </div>
+  </a>
+  <div class="nav-right">
+    <div class="nav-badge">Dr. {{ session.user }}</div>
+    <a href="/patients" class="btn btn-outline">📋 Patients</a>
+    <a href="/logout"   class="btn btn-red">Déconnexion</a>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="wrap-lg">
+    <div class="dash-page">
+
+      <!-- Welcome -->
+      <div class="dash-welcome">
+        <div class="dash-welcome-text">
+          <h1>Bonjour, <em>Dr. {{ session.user }}</em> 👋</h1>
+          <p>Tableau de bord · Plateforme de diagnostic par Deep Learning</p>
+        </div>
+        <div class="dash-date" id="dateBox">—</div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card" data-icon="👥">
+          <div class="stat-accent" style="background:linear-gradient(90deg,var(--rose),var(--rose3));"></div>
+          <div class="stat-label">Total analyses</div>
+          <div class="stat-val" style="color:var(--rose);">{{ stats.total }}</div>
+          <div class="stat-desc">patients enregistrés</div>
+        </div>
+        <div class="stat-card" data-icon="⚠️">
+          <div class="stat-accent" style="background:linear-gradient(90deg,var(--danger),#ff8090);"></div>
+          <div class="stat-label">Cas malins</div>
+          <div class="stat-val" style="color:var(--danger);">{{ stats.malin }}</div>
+          <div class="stat-desc">nécessitent suivi</div>
+        </div>
+        <div class="stat-card" data-icon="✅">
+          <div class="stat-accent" style="background:linear-gradient(90deg,var(--success),#00e6b0);"></div>
+          <div class="stat-label">Cas bénins</div>
+          <div class="stat-val" style="color:var(--success);">{{ stats.benin }}</div>
+          <div class="stat-desc">résultats rassurants</div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="actions-grid">
+        <a href="/predict" class="action-card">
+          <div class="action-top">
+            <div class="action-ico ico-rose">🩺</div>
+            <span class="action-arr">↗</span>
+          </div>
+          <h3>Nouvelle analyse</h3>
+          <p>Soumettre une image de lésion cutanée et obtenir un diagnostic IA instantané.</p>
+          <span class="action-tag">VGG16 · Deep Learning</span>
+        </a>
+
+        <a href="/patients" class="action-card">
+          <div class="action-top">
+            <div class="action-ico ico-blue">📋</div>
+            <span class="action-arr">↗</span>
+          </div>
+          <h3>Historique patients</h3>
+          <p>Consulter tous les diagnostics enregistrés avec images et résultats détaillés.</p>
+          <span class="action-tag">{{ stats.total }} entrées · MySQL</span>
+        </a>
+
+        
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  const d = new Date();
+  const opts = { weekday:'long', day:'numeric', month:'long', year:'numeric' };
+  document.getElementById('dateBox').textContent = d.toLocaleDateString('fr-FR', opts);
+</script>
+
+</body>
+</html>
