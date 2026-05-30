@@ -14,16 +14,8 @@
 <br>
 
 > 🏥 Application Web médicale complète intégrant un modèle **VGG16** de Deep Learning  
-> pour la détection du cancer cutané — **Bénin ✅** ou **Malin ⚠️**
+> pour la détection du cancer cutané 
 
-<br>
-
- **ENSTAB** · 1ère année Ingénieur Technologies Avancées · **1TA2**  
-Module : Introduction à l'IA · **2025/2026**  
- Enseignante : **Amira Echtioui**  
- Étudiante : **Nouha LATRACH**
-
-</div>
 
 ---
 
